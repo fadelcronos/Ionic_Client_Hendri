@@ -1,0 +1,7 @@
+{
+  "name": "Final_MobProg",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

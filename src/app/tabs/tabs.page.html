@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Job Vacancy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="black-text">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+        <ion-card *ngFor="let job of Jobs.slice(0)">
+          <ion-card-header color="primary">
+            <ion-card-title>{{ job.title }}</ion-card-title>
+          </ion-card-header><br>
+          <ion-card-content>
+            <h2>{{ job.company }}</h2>
+            <p>{{ job.jobType }}</p>
+            <p>{{ job.location }}</p>
+          </ion-card-content>
+          
+          <div class="ion-text-center">
+            <ion-button slot="primary"
+              fill="clear"
+              color="primary"
+              [routerLink]="['/tabs', job.id]"
+            >
+              View Job
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
