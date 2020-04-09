@@ -32,7 +32,16 @@ const routes: Routes = [
                   //     loadChildren: () => import('./account/registration/registration.module').then(m => m.RegistrationPageModule)
                   // },
               ]
-          },
+          },{
+            path: 'addjob/:id/:title/:desc/:loc/:type/:comp',
+            children: [
+                {
+                    path: '',
+                    loadChildren: () => import('../jobs/add-job/add-job.module').then(m => m.AddJobPageModule)
+                },
+            ]
+        },
+          
           {
               path: '',
               redirectTo: '/jobs/tabs/job',

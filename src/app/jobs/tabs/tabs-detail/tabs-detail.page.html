@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs"></ion-back-button>
+      <ion-back-button defaultHref="/jobs/tabs/job"></ion-back-button>
     </ion-buttons>
     <ion-title>Jobs Detail</ion-title>
     <ion-buttons slot="primary">
@@ -13,22 +13,24 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
-        <h1 class="ion-text-center">{{ loadJob?.title }} at {{ loadJob?.company }}</h1>
+        <h1 class="ion-text-center">{{ title }} at {{ comp }}</h1>
       </ion-col>
     </ion-row>
-    <p class="ion-text-center">{{ loadJob?.location }}</p>
-    <p class="ion-text-center">{{loadJob?.jobType}}</p>
+    <p class="ion-text-center">{{ loc }}</p>
+    <p class="ion-text-center">{{ type }}</p>
     <ion-row>
       <ion-col>
         <p><b>Job Description</b></p>
-        <p>{{ loadJob?.description }}</p>
+        <p>{{ desc }}</p>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="ion-text-center">
       <ion-col>
-
+<ion-button color="success" (click)="editjob(id, title, desc, loc, type, comp)">Edit Job</ion-button>
       </ion-col>
-    </ion-row>
-  </ion-grid>
-
+      <ion-col>
+        <ion-button color="danger" (click)="deljob(id)">Delete Job</ion-button>
+      </ion-col>
+    </ion-row>  
+</ion-grid>
 </ion-content>

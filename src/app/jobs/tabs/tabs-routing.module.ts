@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TabsPage
   },
   {
-    path: 'tabs-detail',
+    path: 'job-detail/:id/:title/:desc/:type/:loc/:comp',
     loadChildren: () => import('./tabs-detail/tabs-detail.module').then( m => m.TabsDetailPageModule)
   },
   {

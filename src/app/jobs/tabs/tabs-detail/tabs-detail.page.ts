@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TabsService } from '../tabs.service';
-import { Jobs } from '../tabs.model';
+import { PostProvider } from '../../../../providers/post-provider';
 
 @Component({
   selector: 'app-tabs-detail',
@@ -9,22 +8,47 @@ import { Jobs } from '../tabs.model';
   styleUrls: ['./tabs-detail.page.scss'],
 })
 export class TabsDetailPage implements OnInit {
-  loadJob: Jobs;
+  id: number;
+  title: string;
+  loc: string;
+  desc: string;
+  type: string;
+  comp: string;
+
+  idel:number;
   constructor(
     private actRoute: ActivatedRoute,
-    private tabsService: TabsService,
-    private router: Router) { }
+    private postPvdr: PostProvider,
+    private router: Router,
+    ) { }
 
   ngOnInit() {
-    this.actRoute.paramMap.subscribe(paramMap => {
-      if(!paramMap.has('jobsId')){
-        this.router.navigate(['/tabs']);
-        return;
-      }
+    this.actRoute.params.subscribe((data: any) =>{
+      this.id = data.id;
+      this.title = data.title;
+      this.desc = data.desc;
+      this.loc = data.loc;
+      this.type = data.type;
+      this.comp = data.comp;
+      console.log(data);
+  	});
+  }
 
-      const jobsId = paramMap.get('jobsId');
-      this.loadJob = this.tabsService.getJob(jobsId);
+  deljob(id){
+    let body = {
+      aksi : 'delete',
+      job_id : id
+    };
+
+    this.postPvdr.postData(body, 'proses_api.php').subscribe(data => {
+      this.router.navigate(['/jobs/tabs/job']);
     });
+  }
+
+  editjob(id, title, desc, loc, type, comp){
+    this.router.navigate(['/jobs/tabs/addjob/' + id + '/' + title + '/' + desc + '/' + loc + '/' + type + '/' + comp]);
+
+    // id, title, desc, loc, type, comp
   }
 
 }
